@@ -12,12 +12,15 @@
   </p>
 </blockquote>
 
-<button class="button" [disabled]="disableLoadButton()" (click)="onButtonClick()">
+<button class="button" [disabled]="false" (click)="onButtonClick()">
   Start loading
 </button>
 
-@if (!finalMessage()) {
-  <progress class="progress" [max]="100" [value]="percentLoaded()">{{percentLoaded()}}%</progress>{{percentLoaded()}}%
+@let progression = (progression$ | async) ?? 0;
+@let finalMsg = finalMsg$ | async;
+
+@if (!finalMsg) {
+  <progress class="progress" [max]="100" [value]="progression">{{progression}}</progress>{{progression}}%
 } @else {
-  <div class="loading">{{finalMessage()}}</div>
+  <div class="loading">{{finalMsg}}</div>
 }
