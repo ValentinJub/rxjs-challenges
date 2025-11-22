@@ -1,6 +1,14 @@
-<blockquote>
-  Create a countdown and a button to restart it
-</blockquote>
-<p>
-  <button>Resend code</button>
-</p>
+<div class="flex flex-col items-center gap-4 w-full">
+  <blockquote class="w-full text-center">
+    Create a countdown and a button to restart it
+  </blockquote>
+  <div class="flex flex-col items-center">
+    <h1 class="font-mono font-bold ">RxJS 🧙🏼‍♂️</h1>
+    <p>
+      <button class="btn-primary" (click)="trigger$.next()">Countdown</button>
+    </p>
+    <p class="font-mono text-xl">
+      {{ count$ | async }}
+    </p>
+  </div>
+</div>
