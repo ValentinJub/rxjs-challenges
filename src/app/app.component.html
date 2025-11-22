@@ -1,0 +1,23 @@
+<blockquote>
+  <p>
+    Here you have <code>loadingService</code> with <code>load</code> method.
+  </p>
+
+  <p>
+    Method emits <code>number</code> of % loaded or <code>string</code> with final result.
+  </p>
+
+  <p>
+    Show progress bar with loaded % value until result
+  </p>
+</blockquote>
+
+<button class="button" [disabled]="disableLoadButton()" (click)="onButtonClick()">
+  Start loading
+</button>
+
+@if (!finalMessage()) {
+  <progress class="progress" [max]="100" [value]="percentLoaded()">{{percentLoaded()}}%</progress>{{percentLoaded()}}%
+} @else {
+  <div class="loading">{{finalMessage()}}</div>
+}
