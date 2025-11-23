@@ -1,0 +1,44 @@
+<div class="flex flex-col items-center gap-4 font-mono">
+  <blockquote class="w-full text-center font-bold">
+    <p>
+      This is a really small cinema!
+    </p>
+    <p>
+      Let users pick seats and count them in <i>selected</i> counter.
+    </p>
+    <p>
+      Hide seats and show the final cost after user clicks <i>buy</i> button.
+    </p>
+  </blockquote>
+
+  <div class="font-bold text-lg mb-4 items-center flex flex-col gap-4">
+    @if (showSeats()) {
+      <h3>
+        Choose your seats
+      </h3>
+
+      <section class="cinema">
+        @for (index of [1,2,3,4,5,6,7,8,9,10]; track index; let idx = $index) {
+        <button 
+          class="seat" 
+          [class.seat-picked]="pickedSeat.has(idx + 1)" 
+          (click)="book$.next(idx + 1)"
+          >{{index}}</button>
+        }
+      </section>
+
+      Selected: {{(bookedSeats$ | async)?.length ?? 0}}
+
+      <button class="buy" (click)="buy()">
+        Buy
+      </button>
+    } @else {
+      <section class="final-cost">
+        Final cost is $ {{price$ | async}}
+      </section>
+      <button class="buy" (click)="reset()">
+        Reset
+      </button>
+    }
+  </div>
+</div>
